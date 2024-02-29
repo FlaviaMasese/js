@@ -1,0 +1,184 @@
+@import "bourbon";
+
+$dark-blue: rgb(20, 48, 65);
+$dark: rgb(18,16,19);
+
+/* Intentionall long time to highlight effect */
+$transform-speed: 2s;
+
+@import url(https://fonts.googleapis.com/css?family=Bitter:700);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body{
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+body{
+  font-size: 24px;
+  line-height: 140%;
+  color: $dark;
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Bitter', serif;
+  font-weight: 700;
+  margin: 24px 0;
+  color: $dark;
+}
+
+#page-wrap{
+  @include perspective(1200px);
+  @include transform-style(preserve-3d);
+  @include transform-origin(center right);
+  @include transition(all $transform-speed ease-in-out);
+  @include transform(rotateY(0deg));
+  @include backface-visibility(hidden);
+  
+  &.flipped{
+      @include transform(rotateY(90deg));
+  }
+}
+
+#hero{
+  background-image: url(https://31.media.tumblr.com/ba7758a52675589e05dc931572be9688/tumblr_n7ygur3NV91st5lhmo1_1280.jpg);
+  width: 100%;
+  height: 350px;
+  background-size: cover;
+  background-position: bottom left;
+  background-origin: 200px 0;
+  
+  h1{
+    color: rgba(242,242,242,.8);
+    text-align: center;
+    margin: 0;
+    padding-top: 100px;
+    font-size: 92px;
+  }
+}
+
+.container{
+  @include clearfix;
+  width: 960px;
+  margin: 0 auto;
+  
+  div{
+    float: left;
+    padding: 48px 20px;
+  }
+}
+
+.left-body-column{
+  width: 65%;
+  margin-right: 5%;
+}
+
+.right-aside-column{
+  width: 30%;
+}
+
+footer{
+  background: $dark;
+  
+  .container{
+    color: #666;
+    padding: 48px 0
+  }
+}
+
+
+#search-launcher{
+  @include transition(all .4s ease-in-out);
+  cursor: pointer;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background: rgba(0,0,0,.8);
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  
+  &:hover{
+    @include transform(scale(1.2));
+  }
+  
+  i{
+    color: #FFF;
+    font-size: 24px;
+    line-height: 40px;
+  }
+}
+
+#search-box{
+  @include perspective(1200px);
+  @include transform-style(preserve-3d);
+  @include transform-origin(center left);
+  @include transition(all $transform-speed ease-in-out);
+  @include transform(rotateY(90deg));
+  @include backface-visibility(hidden);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background: $dark; 
+  
+  &.flipped{
+    @include transform(rotateY(0deg));
+    width: 100%;
+  }
+  
+  form{
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    width: 80%;
+    
+    &:hover{
+      input, button{
+        border-color: lighten($dark-blue, 10%);
+      }
+
+      button{
+        background: lighten($dark-blue, 10%);
+      }
+    }
+  }
+  
+  
+  
+  input{
+    border: 0;
+    border: 5px solid $dark-blue;
+    color: $dark;
+    display: inline-block;
+    width: 70%;
+    height: 80px;
+    outline: 0;
+    font-size: 36px;
+    vertical-align: bottom;
+    padding: 10px;
+    font-family: 'Bitter', serif;
+    font-weight: 700;       
+
+  }
+  
+  button{
+    display: inline-block;
+    border: 0;
+    width: 30%;
+    margin-left: -6px;
+    height: 80px;
+    background: $dark-blue;
+    font-size: 36px;
+    color: #F2F2F2;
+    font-family: 'Bitter', serif;
+    font-weight: 700;
+  }
+}
